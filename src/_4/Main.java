@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -19,15 +22,26 @@ public class Main {
 			ficheroentrada = new BufferedReader(new FileReader("src\\_4\\input.csv"));
 			ficherosalida = new PrintWriter(new FileWriter("src\\_4\\output.txt"), false);
 			entrada = new Scanner(ficheroentrada);
-			entrada.useDelimiter("\s\n");
+			entrada.useDelimiter("\\s\n");
 			double total = 0;
 			double totalComisiones = 0;
 
+			LocalDate fecha = LocalDate.now();
+			String mes = fecha.format(DateTimeFormatter.ofPattern("MMMM", new Locale("es", "ES")));
+			int anho = fecha.getYear();
+
 			System.out.format("ACME %n");
-			System.out.format("Total ventas del mes de %s del %d %n", "enero", 2012);
+			System.out.format("Total ventas del mes de %s del %d %n", mes, anho);
 			System.out.format("%n");
 
 			System.out.format("%-8s%-12s%-16s%-16s%-10s%-11s %n", "ID", "Nombre", "Apellido1", "Apellido2", "Ventas",
+					"Comision");
+
+			ficherosalida.format("ACME %n");
+			ficherosalida.format("Total ventas del mes de %s del %d %n", mes, anho);
+			ficherosalida.format("%n");
+
+			ficherosalida.format("%-8s%-12s%-16s%-16s%-10s%-11s %n", "ID", "Nombre", "Apellido1", "Apellido2", "Ventas",
 					"Comision");
 
 			System.out.format("%n");
@@ -45,7 +59,8 @@ public class Main {
 					double comision = importe * 0.07;
 					System.out.format("%04d    %-12s%-16s%-16s%8.2f €%9.2f €%n", id, nombre, ape1, ape2, importe,
 							comision);
-//					ficherosalida.format("%-15d%10.2f €%n", nombreArticulo, precio);
+					ficherosalida.format("%04d    %-12s%-16s%-16s%8.2f €%9.2f €%n", id, nombre, ape1, ape2, importe,
+							comision);
 					total += importe;
 					totalComisiones += comision;
 
@@ -56,6 +71,7 @@ public class Main {
 			}
 
 			System.out.format("%-52s%8.2f €%9.2f €", "TOTALES", total, totalComisiones);
+			ficherosalida.format("%-52s%8.2f €%9.2f €", "TOTALES", total, totalComisiones);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -65,6 +81,7 @@ public class Main {
 			try {
 				ficheroentrada.close();
 				entrada.close();
+				ficherosalida.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

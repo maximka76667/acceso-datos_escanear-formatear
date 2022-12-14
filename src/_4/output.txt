@@ -1,0 +1,9 @@
+ACME 
+Total ventas del mes de diciembre del 2022 
+
+ID      Nombre      Apellido1       Apellido2       Ventas    Comision    
+0001    Antonio     Rodriguez       Hernández        2000,30 €   140,02 €
+0002    Jesús       López           Aguliar          4000,50 €   280,04 €
+0003    Andrea      García          Cáceres           500,00 €    35,00 €
+0004    José        Del Río         Romero           1300,00 €    91,00 €
+TOTALES                                              7800,80 €   546,06 €

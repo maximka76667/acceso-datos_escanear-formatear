@@ -15,13 +15,15 @@ public class Main {
 		try {
 			ficheroentrada = new BufferedReader(new FileReader("src\\_3\\input.txt"));
 			entrada = new Scanner(ficheroentrada);
-			entrada.useDelimiter("\s\n");
+			entrada.useDelimiter("\\s\n");
+
+			System.out.println("Articulo PVP Unidades Importe");
+
 			int total = 0;
 			while (entrada.hasNext()) {
 				String line = entrada.next();
 				Scanner lineScanner = new Scanner(line);
 				lineScanner.useDelimiter("\\s*;\\s*|\\s*\n\\s*");
-				System.out.println("Articulo PVP Unidades Importe");
 				while (lineScanner.hasNext()) {
 					String articulo = lineScanner.next();
 					Double pvp = Double.parseDouble(lineScanner.next());
